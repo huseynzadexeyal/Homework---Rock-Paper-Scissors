@@ -63,24 +63,6 @@ function playLoseSound() {
   osc.stop(now + 0.5);
 }
 
-// 🏆 Bütün matçı qazananda: real "Flawless Victory" mp3
-const matchWinAudioEl = document.getElementById("matchWinSound");
-
-function playMatchWinSound() {
-  matchWinAudioEl.currentTime = 0;
-  matchWinAudioEl.volume = 0.7;
-  matchWinAudioEl.play();
-}
-
-// 💀 Bütün matçı uduzanda: real mp3
-const matchLoseAudioEl = document.getElementById("matchLoseSound");
-
-function playMatchLoseSound() {
-  matchLoseAudioEl.currentTime = 0;
-  matchLoseAudioEl.volume = 0.7;
-  matchLoseAudioEl.play();
-}
-
 // 🎵 Fon musiqisi — real mp3 fayl (sounds/bg-music.mp3)
 const bgMusicEl = document.getElementById("bgMusic");
 let bgMusicOn = false;
@@ -103,4 +85,43 @@ function toggleBackgroundMusic() {
     startBackgroundMusic();
   }
   return bgMusicOn;
+}
+
+// --- Matç bitəndə fonu müvəqqəti dayandır, effekt bitəndə davam etdir ---
+function duckBackgroundMusicWhile(effectAudioEl) {
+  const wasPlaying = bgMusicOn;
+
+  if (wasPlaying) {
+    bgMusicEl.pause();
+  }
+
+  effectAudioEl.addEventListener(
+    "ended",
+    () => {
+      if (wasPlaying) {
+        bgMusicEl.play();
+      }
+    },
+    { once: true }
+  );
+}
+
+// 🏆 Bütün matçı qazananda: real "Flawless Victory" mp3
+const matchWinAudioEl = document.getElementById("matchWinSound");
+
+function playMatchWinSound() {
+  duckBackgroundMusicWhile(matchWinAudioEl);
+  matchWinAudioEl.currentTime = 0;
+  matchWinAudioEl.volume = 0.7;
+  matchWinAudioEl.play();
+}
+
+// 💀 Bütün matçı uduzanda: real mp3
+const matchLoseAudioEl = document.getElementById("matchLoseSound");
+
+function playMatchLoseSound() {
+  duckBackgroundMusicWhile(matchLoseAudioEl);
+  matchLoseAudioEl.currentTime = 0;
+  matchLoseAudioEl.volume = 0.7;
+  matchLoseAudioEl.play();
 }

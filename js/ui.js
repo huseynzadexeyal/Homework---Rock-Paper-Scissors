@@ -17,6 +17,7 @@ const playerAvatarEl = document.getElementById("playerAvatar");
 const computerAvatarEl = document.getElementById("computerAvatar");
 const resetBtn = document.getElementById("resetBtn");
 const musicBtn = document.getElementById("musicBtn");
+const confettiContainer = document.getElementById("confettiContainer");
 
 const ICONS = {
   rock: "✊",
@@ -49,6 +50,26 @@ function updateResultText(text, className) {
   resultEl.textContent = text;
 }
 
+function launchConfetti() {
+  const colors = ["#7ed957", "#ffd447", "#4dd0e1", "#ff5e5e", "#c77dff"];
+  const pieceCount = 60;
+
+  for (let i = 0; i < pieceCount; i++) {
+    const piece = document.createElement("div");
+    piece.className = "confetti-piece";
+
+    piece.style.left = Math.random() * 100 + "%";
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDuration = 1.2 + Math.random() * 0.8 + "s";
+    piece.style.animationDelay = Math.random() * 0.3 + "s";
+
+    confettiContainer.appendChild(piece);
+
+    // Animasiya bitəndən sonra elementi DOM-dan sil ki, yığılmasın
+    piece.addEventListener("animationend", () => piece.remove());
+  }
+}
+
 function endMatch(winnerIsPlayer) {
   matchOver = true;
 
@@ -56,6 +77,7 @@ function endMatch(winnerIsPlayer) {
     updateResultText("🏆 Sən matçı qazandın!", "match-win");
     playerAvatarEl.classList.add("win-glow");
     playMatchWinSound();
+    launchConfetti();
   } else {
     updateResultText("💀 Kompüter matçı qazandı. Yenidən cəhd et!", "lose");
     computerAvatarEl.classList.add("win-glow");
@@ -108,6 +130,7 @@ function resetGame() {
   computerAvatarEl.textContent = "🤖";
   playerAvatarEl.classList.remove("win-glow");
   computerAvatarEl.classList.remove("win-glow");
+  confettiContainer.innerHTML = "";
 }
 
 // --- Event listener-lər ---

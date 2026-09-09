@@ -1,0 +1,258 @@
+/* ===== Ümumi ayarlar ===== */
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse at center 30%, #1c3a5e 0%, #0c1b2e 55%, #060d17 100%);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ===== Arena qutusu ===== */
+.arena {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  padding: 40px 32px;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 20px;
+  background: rgba(6, 14, 26, 0.55);
+  border: 1px solid rgba(120, 200, 255, 0.15);
+  box-shadow: 0 0 60px rgba(30, 140, 220, 0.25);
+}
+
+/* ===== Fon işıq şüaları (spotlight) ===== */
+.spotlight {
+  position: absolute;
+  top: -20%;
+  width: 260px;
+  height: 160%;
+  background: linear-gradient(180deg, rgba(120, 210, 255, 0.35), rgba(120, 210, 255, 0));
+  filter: blur(6px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.spotlight-left {
+  left: -60px;
+  transform: rotate(12deg);
+}
+
+.spotlight-right {
+  right: -60px;
+  transform: rotate(-12deg);
+}
+
+/* ===== Başlıq ===== */
+.title {
+  position: relative;
+  z-index: 1;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 30px;
+  text-shadow: 0 0 16px rgba(120, 210, 255, 0.6);
+}
+
+/* ===== Döyüşçülər (fighters) ===== */
+.fighters {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.fighter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  background: radial-gradient(circle at 35% 30%, #2a4a6e, #14283f);
+  border: 2px solid rgba(120, 210, 255, 0.4);
+  box-shadow: 0 0 24px rgba(120, 210, 255, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.avatar.shake {
+  animation: avatarShake 0.4s ease;
+}
+
+.avatar.win-glow {
+  box-shadow: 0 0 30px rgba(126, 217, 87, 0.8);
+  border-color: #7ed957;
+}
+
+.fighter-name {
+  font-size: 13px;
+  color: #9fc4e0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.vs-badge {
+  font-size: 15px;
+  font-weight: 800;
+  color: #ff5e5e;
+  border: 2px solid #ff5e5e;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 0 10px rgba(255, 94, 94, 0.7);
+  box-shadow: 0 0 14px rgba(255, 94, 94, 0.4);
+}
+
+/* ===== Hesab: X / 10 ===== */
+.score-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-weight: 800;
+}
+
+.score-value {
+  font-size: 32px;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(120, 210, 255, 0.6);
+}
+
+.score-slash {
+  font-size: 15px;
+  color: #6f95b3;
+  margin-right: 8px;
+}
+
+.score-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 6px;
+}
+
+/* ===== Nəticə mətni ===== */
+.result {
+  position: relative;
+  z-index: 1;
+  min-height: 22px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #cfe6f7;
+  margin-bottom: 26px;
+}
+
+.result.win { color: #7ed957; }
+.result.lose { color: #ff6b5e; }
+.result.draw { color: #f7b733; }
+.result.match-win { color: #ffd447; font-weight: 800; }
+
+@keyframes avatarShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* ===== Seçim düymələri — dəri/taxta panel effekti ===== */
+.choices {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-bottom: 26px;
+}
+
+.choice-btn {
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.25)),
+    linear-gradient(135deg, #8a5a34, #5e3a1f);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.15),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.4),
+    0 6px 14px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.choice-btn .icon {
+  font-size: 38px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+}
+
+.choice-btn:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.4),
+    0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+.choice-btn:active {
+  transform: translateY(1px) scale(0.96);
+}
+
+/* ===== Alt düymələr ===== */
+.bottom-buttons {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.reset-btn, .music-btn {
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(120, 210, 255, 0.4);
+  background: rgba(120, 210, 255, 0.08);
+  color: #cfe6f7;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.reset-btn:hover, .music-btn:hover {
+  background: rgba(120, 210, 255, 0.18);
+}
+
+.music-btn.on {
+  border-color: #7ed957;
+  color: #b6f0a0;
+  background: rgba(126, 217, 87, 0.12);
+}

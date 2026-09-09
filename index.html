@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daş, Kağız, Qayçı — Arena</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <main class="arena">
+
+    <!-- Fon işıq şüaları -->
+    <div class="spotlight spotlight-left"></div>
+    <div class="spotlight spotlight-right"></div>
+
+    <!-- Başlıq -->
+    <h1 class="title">Daş, Kağız, Qayçı</h1>
+
+    <!-- İki tərəf: oyunçu vs kompüter -->
+    <section class="fighters">
+      <div class="fighter fighter-player">
+        <div id="playerAvatar" class="avatar">🧑</div>
+        <span class="fighter-name">Sən</span>
+      </div>
+
+      <div class="vs-badge">VS</div>
+
+      <div class="fighter fighter-computer">
+        <div id="computerAvatar" class="avatar">🤖</div>
+        <span class="fighter-name">Kompüter</span>
+      </div>
+    </section>
+
+    <!-- Hesab: X / 10 formatında -->
+    <section class="score-row">
+      <span id="playerScore" class="score-value">0</span>
+      <span class="score-slash">/ 10</span>
+
+      <span class="score-divider"></span>
+
+      <span id="computerScore" class="score-value">0</span>
+      <span class="score-slash">/ 10</span>
+    </section>
+
+    <!-- Nəticə mətni -->
+    <section id="result" class="result">Qalib olmaq üçün 10 xala çat!</section>
+
+    <!-- Seçim düymələri -->
+    <section class="choices">
+      <button class="choice-btn" data-choice="rock">
+        <span class="icon">✊</span>
+      </button>
+      <button class="choice-btn" data-choice="paper">
+        <span class="icon">✋</span>
+      </button>
+      <button class="choice-btn" data-choice="scissors">
+        <span class="icon">✌️</span>
+      </button>
+    </section>
+
+    <div class="bottom-buttons">
+      <button id="resetBtn" class="reset-btn">Yenidən başla</button>
+      <button id="musicBtn" class="music-btn">🔇 Musiqi</button>
+    </div>
+  </main>
+
+  <audio id="bgMusic" src="sounds/bg-music.mp3" loop></audio>
+  <audio id="matchWinSound" src="sounds/match-win.mp3"></audio>
+  <audio id="matchLoseSound" src="sounds/match-lose.mp3"></audio>
+
+  <!-- Sıra vacibdir -->
+  <script src="js/game.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>

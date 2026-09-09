@@ -1,0 +1,76 @@
+/* ============================================
+   responsive.css
+   style.css-dən sonra yüklənməlidir.
+   ============================================ */
+
+@media (max-width: 480px) {
+  .arena {
+    padding: 30px 18px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .avatar {
+    width: 72px;
+    height: 72px;
+    font-size: 36px;
+  }
+
+  .vs-badge {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+
+  .fighters {
+    gap: 14px;
+  }
+
+  .score-value {
+    font-size: 24px;
+  }
+
+  .choice-btn {
+    width: 66px;
+    height: 66px;
+  }
+
+  .choice-btn .icon {
+    font-size: 30px;
+  }
+
+  .spotlight {
+    width: 160px;
+  }
+
+  .bottom-buttons {
+    flex-direction: column;
+  }
+
+  .bottom-buttons button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 340px) {
+  .fighters {
+    gap: 8px;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+
+  .choice-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .choice-btn .icon {
+    font-size: 26px;
+  }
+}
